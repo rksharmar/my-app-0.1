@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { NgModel,FormsModule  } from '@angular/forms';
+import { NgForm } from '@angular/forms/src/directives/ng_form';
+
 
 @Component({
   selector: 'app-login',
@@ -17,16 +19,14 @@ errormessage:string="";
   ngOnInit() {
   }
 
-  login()
+  login(loginForm:NgForm)
   {
-    console.log("login");
-    console.log(this.username);
-    console.log(this.password);
-    console.log("login");
+    console.log(loginForm.value.Username);
     
-    if(this.username=="hdfc" || this.username=="icici")
+    
+    if(loginForm.value.Username=="hdfc" || loginForm.value.Username=="icici")
     {
-      if(this.username=="hdfc" && this.password=="123")
+      if(loginForm.value.Username=="hdfc" && loginForm.value.Password=="123")
       {
         this.router.navigate(['/home']);
       }
@@ -34,7 +34,7 @@ errormessage:string="";
       {
         this.errormessage="invalid password!"
       }
-      if(this.username=="icici" && this.password=="456")
+      if(loginForm.value.Username=="icici" && loginForm.value.Password=="icici")
       {
         this.router.navigate(['/home1']);
       }
@@ -47,7 +47,7 @@ errormessage:string="";
       {
         this.errormessage="invalid username!"
       }
-      alert(this.errormessage);
+      
   }
 
 }
